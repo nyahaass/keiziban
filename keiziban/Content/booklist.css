@@ -1,0 +1,11 @@
+﻿.book{
+    width:1000px;
+    height:1000px;
+}
+.mBook{
+    border:1px solid;
+    height:150px;
+}
+.pDescript{
+    font-size:11px;
+}
