@@ -6,16 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using log4net;
 
 namespace keiziban
 {
     public partial class main : System.Web.UI.Page
     {
+        ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ClsDb db = new ClsDb();
             DataTable tb;
-            db.Connect("localhost", "master", "sa", "", -1);
+            db.Connect();
             tb = db.ExecuteSql("select * from article_title", -1);
 
             db.Disconnect();

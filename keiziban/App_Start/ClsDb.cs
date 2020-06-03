@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Data.Odbc;
+using System.Configuration;
+using log4net;
 
 namespace keiziban.App_Start
 {
     public class ClsDb
     {
+        ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// SQLコネクション
         /// </summary>
@@ -22,16 +26,9 @@ namespace keiziban.App_Start
         /// <summary>
         /// DB接続
         /// </summary>
-        /// <param name="dsn">データソース名</param>
-        /// <param name="dbn">データベース名</param>
-        /// <param name="uid">ユーザーID</param>
-        /// <param name="pas">パスワード</param>
-        /// <param name="tot">タイムアウト値</param>
         /// <remarks></remarks>
-        public void Connect(
-            String dsn, String dbn, String uid, String pas, int tot)
+        public void Connect()
         {
-
             try
             {
                 if (_con == null)
@@ -39,23 +36,19 @@ namespace keiziban.App_Start
                     _con = new OdbcConnection();
                 }
 
-                String cst = "";
-                cst = cst + ";DSN=" + "keiziban";
-                cst = cst + ";Database=" + "keiziban";
-                cst = cst + ";UID=" + "mente";
-                cst = cst + ";PWD=" + "mente";
-                if (tot > -1)
+                String cst = ConfigurationManager.AppSettings["dbConStr"]; 
+                if (cst.Length == 0)
                 {
-                    //_con.ConnectionTimeout = tot;
-                    cst = cst + ";Connect Timeout=" + tot.ToString();
+                    return ;
                 }
-                _con.ConnectionString = cst;
 
-                _con.Open();
+                _con.ConnectionString = cst;
+               _con.Open();
+
             }
             catch (Exception ex)
             {
-                throw new Exception("Connect Error", ex);
+                log.Error(ex.ToString());
             }
         }
 
@@ -67,10 +60,11 @@ namespace keiziban.App_Start
             try
             {
                 _con.Close();
+
             }
             catch (Exception ex)
             {
-                throw new Exception("Disconnect Error", ex);
+                log.Error(ex.ToString());
             }
         }
 
@@ -99,10 +93,11 @@ namespace keiziban.App_Start
                 adapter.Fill(dt);
                 adapter.Dispose();
                 sqlCommand.Dispose();
+
             }
             catch (Exception ex)
             {
-                throw new Exception("ExecuteSql Error", ex);
+                log.Error(ex.ToString());
             }
 
             return dt;
@@ -117,10 +112,11 @@ namespace keiziban.App_Start
             try
             {
                 _trn = _con.BeginTransaction();
+
             }
             catch (Exception ex)
             {
-                throw new Exception("BeginTransaction Error", ex);
+                log.Error(ex.ToString());
             }
         }
 
@@ -139,7 +135,8 @@ namespace keiziban.App_Start
             }
             catch (Exception ex)
             {
-                throw new Exception("CommitTransaction Error", ex);
+                log.Error(ex.ToString());
+
             }
             finally
             {
@@ -162,7 +159,7 @@ namespace keiziban.App_Start
             }
             catch (Exception ex)
             {
-                throw new Exception("RollbackTransaction Error", ex);
+                log.Error(ex.ToString());
             }
             finally
             {

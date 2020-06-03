@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using log4net;
 
 namespace keiziban.App_Start
 {
@@ -21,6 +22,7 @@ namespace keiziban.App_Start
     {
 
         ClsUtils utils = new ClsUtils();
+        ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         internal List<ARTICLE> GetArticles()
         {
@@ -28,9 +30,10 @@ namespace keiziban.App_Start
 
             ClsDb db = new ClsDb();
             DataTable tb;
+
             try
             {
-                db.Connect("localhost", "master", "sa", "", -1);
+                db.Connect();
                 tb = db.ExecuteSql("select * from article_title order by create_date desc", -1);
 
                 foreach (DataRow dr in tb.Rows)
@@ -44,16 +47,17 @@ namespace keiziban.App_Start
                     article.create_user = utils.NullChkToInt(dr["create_user"]);
 
                 }
-            }catch(Exception e)
-            {
-
-            }finally
+            }
+            catch(Exception ex) 
+            { 
+                log.Error(ex.ToString());
+            }
+            finally
             {
                 db.Disconnect();
             }
+
             return articles;
         }
     }
-
-
 }

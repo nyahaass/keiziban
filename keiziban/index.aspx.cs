@@ -51,13 +51,11 @@ namespace keiziban
             {
                 //TODO:ログイン処理の実装
                 RedirectMainPage();
-            }
-            else
+            }else
             {
                 // 認証に失敗した場合はデフォルトページへ
                 RedirectDefaultPage();
             }
-
             return;
         }
     }

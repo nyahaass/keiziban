@@ -33,3 +33,4 @@ using System.Runtime.InteropServices;
 // 既定値にすることができます:
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "C:\\Users\\yahiro\\source\repos\\keiziban\\keiziban\\log4net\\Log4net.xml", Watch = true)]
