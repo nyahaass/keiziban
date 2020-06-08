@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="mamazon.ApiBook" CodeBehind="ApiArticle.svc.cs" %>

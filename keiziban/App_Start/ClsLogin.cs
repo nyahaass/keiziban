@@ -9,11 +9,18 @@ using log4net;
 
 namespace keiziban.App_Start
 {
-    public class ClsLogin
+    class USER
+    {
+        public int user_id { get; set; }
+        public string user_name { get; set; }
+    }
+
+    class ClsLogin
     {
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        ClsUtils utils = new ClsUtils();
 
-        public bool chkLogin(string id, string pass)
+        public USER chkLogin(string id, string pass)
         {
             ClsDb db = new ClsDb();
             DataTable tb;
@@ -30,8 +37,15 @@ namespace keiziban.App_Start
 
                 if (tb.Rows.Count == 0)
                 {
-                    return false;
+                    return new USER();
                 }
+
+                USER user = new USER();
+
+                user.user_id = utils.NullChkToInt(tb.Rows[0]["user_id"]);
+                user.user_name = utils.NullChkString(tb.Rows[0]["user_name"]);
+
+                return user;
             }
             catch (Exception ex)
             {
@@ -41,7 +55,7 @@ namespace keiziban.App_Start
             {
                 db.Disconnect();
             }
-            return true;   
+            return  new USER();
         }
     }
 }

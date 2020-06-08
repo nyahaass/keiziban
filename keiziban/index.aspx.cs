@@ -46,10 +46,15 @@ namespace keiziban
         private void RegLogin(string id, string pass)
         {
             ClsLogin login = new ClsLogin();
+            keiziban.App_Start.USER user = new keiziban.App_Start.USER();
+            user = login.chkLogin(id, pass);
 
-            if (login.chkLogin(id,pass))
+            if (user.user_id >=0)
             {
                 //TODO:ログイン処理の実装
+                Session["userid"] = user.user_id;
+                Session["user_name"] = user.user_name;
+
                 RedirectMainPage();
             }else
             {

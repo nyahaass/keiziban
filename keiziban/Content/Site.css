@@ -15,20 +15,8 @@ body {
 input,
 select,
 textarea {
-    max-width: 80%;
+    max-width: 95%;
     margin: 5px;
-}
-
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .jumbotron {
-        margin-top: 20px;
-    }
-
-    .body-content {
-        padding: 0;
-    }
 }
 
 body{
@@ -55,12 +43,34 @@ body{
 }
 
 .article {
-    width: 40%;
-    height:100px;
+    width: 90%;
+    height: 130px;
     display: block;
+    margin-top: 3px;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    box-sizing: content-box;
+    border: inset 1px gray;
 }
 
+.articleinput {
+    width: 90%;
+    height: 200px;
+    display: block;
+    margin-top: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: content-box;
+    border: inset 1px gray;
+}
+
+#txtInput {
+    width: 95%;
+    height:120px;
+}
+
+#ddlMenu {
+    width: 30%;
+}
 
 

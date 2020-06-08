@@ -7,6 +7,14 @@ using log4net;
 
 namespace keiziban.App_Start
 {
+
+
+    class CATEGORY
+    {
+        public int category_id { get; set; }
+        public string category_name { get; set; }
+    }
+
     class ARTICLE
     {
         public int kanri_no { get; set; }
@@ -18,13 +26,14 @@ namespace keiziban.App_Start
         public DateTime update_time { get; set; }
     }
 
-    public class ClsArticle
+    class ClsArticle
     {
+
 
         ClsUtils utils = new ClsUtils();
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        internal List<ARTICLE> GetArticles()
+        public  List<ARTICLE> GetArticles()
         {
             List<ARTICLE> articles = new List<ARTICLE>();
 
@@ -46,6 +55,8 @@ namespace keiziban.App_Start
                     article.title_msg = utils.NullChkString(dr["title_msg"]);
                     article.create_user = utils.NullChkToInt(dr["create_user"]);
 
+                    articles.Add(article);
+
                 }
             }
             catch(Exception ex) 
@@ -59,5 +70,45 @@ namespace keiziban.App_Start
 
             return articles;
         }
+
+        internal List<CATEGORY> GetCategorys()
+        {
+            List<CATEGORY> categorys = new List<CATEGORY>();
+
+            ClsDb db = new ClsDb();
+            DataTable tb;
+
+            try
+            {
+                db.Connect();
+                tb = db.ExecuteSql("select * from category order by category_id", -1);
+
+                foreach (DataRow dr in tb.Rows)
+                {
+                    CATEGORY category = new CATEGORY();
+
+                    category.category_id = utils.NullChkToInt(dr["category_id"]);
+                    category.category_name = utils.NullChkString(dr["category_name"]);
+
+                    categorys.Add(category);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+            }
+            finally
+            {
+                db.Disconnect();
+            }
+
+            return categorys;
+        }
+
+        public bool InsArticle(ARTICLE article)
+        {
+            return true;
+        }
     }
+
 }
