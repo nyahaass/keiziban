@@ -12,12 +12,12 @@ body {
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
-input,
 select,
 textarea {
     max-width: 95%;
     margin: 5px;
 }
+  
 
 body{
     width:100%;
@@ -66,11 +66,18 @@ body{
 
 #txtInput {
     width: 95%;
-    height:120px;
+    height:90px;
 }
 
 #ddlMenu {
     width: 30%;
+}
+
+.lbl,
+.pDescript,
+.pPublish {
+    font-size: 0.8em;
+    color: gray;
 }
 
 

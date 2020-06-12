@@ -17,18 +17,9 @@ namespace keiziban
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClsArticle db = new ClsArticle();
-            var articles = db.GetArticles();
 
-            this.rptListItems.DataSource = articles;
-            this.rptListItems.DataBind();
-
-            var category = db.GetCategorys();
-
-            this.ddlMenu.DataSource = category;
-            this.ddlMenu.DataValueField = "category_id";
-            this.ddlMenu.DataTextField = "category_name";
-            this.ddlMenu.DataBind();
+            ReadArticle();
+            loadDdl();
 
             this.txtLogDate.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時MM分");
         }
@@ -73,11 +64,47 @@ namespace keiziban
             keiziban.App_Start.ARTICLE tweet = new keiziban.App_Start.ARTICLE();
             ClsArticle article = new ClsArticle();
 
-            tweet.create_user = utils.NullChkToInt(Session["user_id"]);
+            tweet.create_user = utils.NullChkToInt(Session["userid"]);
             tweet.create_date = DateTime.Now;
+            tweet.title_msg = utils.NullChkString(this.txtInput.Text);
+            tweet.title_name = utils.NullChkString(this.txtTitle.Text);
+            tweet.title_no = utils.NullChkToInt(this.ddlMenu.SelectedValue);
+
+            article.InsArticle(tweet);
+            ReadArticle();
+
+            this.txtInput.Text = String.Empty;
+            this.txtTitle.Text = String.Empty;
+
             return true;
         }
         #endregion
+
+        private bool ReadArticle()
+        {
+            ClsArticle db = new ClsArticle();
+            var articles = db.GetArticles();
+
+            this.rptListItems.DataSource = articles;
+            this.rptListItems.DataBind();
+
+            return true;
+
+        }
+
+        private bool loadDdl()
+        {
+            ClsArticle db = new ClsArticle();
+
+            var category = db.GetCategorys();
+
+            this.ddlMenu.DataSource = category;
+            this.ddlMenu.DataValueField = "category_id";
+            this.ddlMenu.DataTextField = "category_name";
+            this.ddlMenu.DataBind();
+
+            return true;
+        }
 
     }
 }

@@ -53,7 +53,7 @@ namespace keiziban
             {
                 //TODO:ログイン処理の実装
                 Session["userid"] = user.user_id;
-                Session["user_name"] = user.user_name;
+                Session["username"] = user.user_name;
 
                 RedirectMainPage();
             }else

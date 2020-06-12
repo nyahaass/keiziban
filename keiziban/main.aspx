@@ -92,8 +92,9 @@
                                 <div class="pull-left">
                                 </div>
                                 <div class="media-heading">
-                                   <asp:DropDownList ID="ddlMenu" runat="server"></asp:DropDownList>
+                                    <asp:Label class="lbl" runat="server" >ジャンル</asp:Label><asp:DropDownList ID="ddlMenu" runat="server"></asp:DropDownList>                                   
                                 </div>
+                                <asp:Label class="lbl" runat="server" >タイトル </asp:Label><asp:TextBox id="txtTitle"  runat="server"></asp:TextBox> 
                                 <div class="media-body" style="">
                                     <asp:TextBox id="txtInput" TextMode="MultiLine"  rows="5" runat="server"></asp:TextBox> 
                                 </div>
@@ -112,7 +113,7 @@
                                         </div>
                                         <div class="media-heading">
                                             <p>
-                                                <img class="media-objec" src=' + bPhotoUrl + ' />
+                                                <img class="media-objec" src='./img/news.png'  />
                                                 タイトル : <%# Eval("title_name") %>
                                             </p>
 
