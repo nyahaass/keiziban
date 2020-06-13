@@ -1,0 +1,27 @@
+﻿
+
+#txtName {
+    width: 50%;
+    height:30px;
+}
+
+#txtMail {
+    width:60%;
+    height:30px;
+}
+
+#txtPass{
+    width:50%;
+    height:30px;
+}
+
+
+
+#txtProfile {
+    height: 90px;
+    width:80%;
+}
+
+.edit{
+    width:80%;
+}
