@@ -106,7 +106,7 @@
                                 <asp:TextBox id="txtProfile" TextMode="MultiLine" class="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="media-footer"  >
-                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="保存" />
+                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="保存" OnClick="btnReg_Click"/>
                             </div>
                         </div>
                     </div>
