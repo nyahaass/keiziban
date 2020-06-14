@@ -23,12 +23,24 @@ namespace keiziban
 
         protected void btnReg_Click(object sender, EventArgs e)
         {
+            if (ChkProfile())
+            {
+                RegProfile();
+            }
 
+            return;
         }
 
         #region プロファイル更新：データチェック
         private bool ChkProfile()
         {
+            string name = this.txtName.Text;
+
+            if (name.Length == 0)
+            {
+                return false;
+
+            }
 
             return true;
         }
@@ -38,8 +50,16 @@ namespace keiziban
         #region プロファイル更新: 更新
         private bool RegProfile()
         {
+            keiziban.App_Start.PROFILE profile = new keiziban.App_Start.PROFILE();
+            ClsUser cUser = new ClsUser();
 
+            profile.user_id = utils.NullChkToInt(Session["userid"]);
+            profile.user_name = utils.NullChkString(this.txtName.Text);
+            profile.mail = utils.NullChkString(this.txtMail.Text);
+            profile.profile_message = utils.NullChkString(this.txtProfile.Text);
 
+            cUser.InsProfile(profile);
+            ReadProfile();
             return true;
         }
         #endregion
@@ -54,6 +74,11 @@ namespace keiziban
             this.txtName.Text = user?.user_name ?? String.Empty;
             this.txtMail.Text = user?.mail ?? String.Empty;
             this.txtProfile.Text = user?.profile_message ?? String.Empty;
+
+
+
+
+
 
             return true;
 

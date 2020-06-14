@@ -114,7 +114,7 @@ namespace keiziban.App_Start
             try
             {
                 db.Connect();
-                tb = db.ExecuteSql("insert into article_title (title_no,title_msg,title_name,create_user,create_Date) " +
+                tb = db.ExecuteNonSql("insert into article_title (title_no,title_msg,title_name,create_user,create_Date) " +
                                     "values(" + article.title_no + ",'" + article.title_msg + "','" + article.title_name + "'," + article.create_user + ",'" + article.create_date+ "')", -1);
 
             }

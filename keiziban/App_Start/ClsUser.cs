@@ -10,6 +10,7 @@ namespace keiziban.App_Start
 
     class PROFILE
     {
+        public int user_id { get; set; }
         public string user_name { get; set; }
         public string mail { get; set; }
         public string profile_message { get; set; }
@@ -55,6 +56,28 @@ namespace keiziban.App_Start
             }
 
             return new PROFILE();
+        }
+
+        public bool InsProfile(PROFILE user)
+        {
+
+            ClsDb db = new ClsDb();
+
+            try
+            {
+                db.Connect();
+                db.ExecuteSql("UPDATE users SET user_name =  '" + user.user_name + "',email = '" + user.mail + "', profile_message = '" + user.profile_message + "' where user_id = " + user.user_id, -1);                                     
+
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+            }
+            finally
+            {
+                db.Disconnect();
+            }
+            return true;
         }
     }
 }
