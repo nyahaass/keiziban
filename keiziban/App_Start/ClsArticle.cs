@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Text;
 using log4net;
 
 namespace keiziban.App_Start
@@ -36,14 +37,17 @@ namespace keiziban.App_Start
         public  List<ARTICLE> GetArticles()
         {
             List<ARTICLE> articles = new List<ARTICLE>();
-
+            StringBuilder strSql = new StringBuilder();
             ClsDb db = new ClsDb();
             DataTable tb;
+
+            strSql.AppendLine("SELECT * FROM article_title");
+            strSql.AppendLine("ORDER BY create_date DESC");
 
             try
             {
                 db.Connect();
-                tb = db.ExecuteSql("select * from article_title order by create_date desc", -1);
+                tb = db.ExecuteSql(strSql.ToString(), -1);
 
                 foreach (DataRow dr in tb.Rows)
                 {
@@ -74,14 +78,17 @@ namespace keiziban.App_Start
         internal List<CATEGORY> GetCategorys()
         {
             List<CATEGORY> categorys = new List<CATEGORY>();
-
+            StringBuilder strSql = new StringBuilder();
             ClsDb db = new ClsDb();
             DataTable tb;
+
+            strSql.AppendLine("SELECT * FROM category");
+            strSql.AppendLine("ORDER BY category_id");
 
             try
             {
                 db.Connect();
-                tb = db.ExecuteSql("select * from category order by category_id", -1);
+                tb = db.ExecuteSql(strSql.ToString(), -1);
 
                 foreach (DataRow dr in tb.Rows)
                 {
@@ -107,15 +114,28 @@ namespace keiziban.App_Start
 
         public bool InsArticle(ARTICLE article)
         {
-
+            StringBuilder strSql = new StringBuilder();
             ClsDb db = new ClsDb();
             DataTable tb;
+
+            strSql.AppendLine("INSERT INTO article_title");
+            strSql.AppendLine("(title_no,");
+            strSql.AppendLine("title_msg, ");
+            strSql.AppendLine("title_name, ");
+            strSql.AppendLine("create_user, ");
+            strSql.AppendLine("create_Date) ");
+            strSql.AppendLine("VALUES(");
+            strSql.AppendLine(article.title_no.ToString());
+            strSql.AppendLine(", '" + article.title_msg +"'");
+            strSql.AppendLine(", '" + article.title_name + "'");
+            strSql.AppendLine(", '" + article.create_user + "'");
+            strSql.AppendLine(", '" + article.create_date + "'");
+            strSql.AppendLine("')");
 
             try
             {
                 db.Connect();
-                tb = db.ExecuteNonSql("insert into article_title (title_no,title_msg,title_name,create_user,create_Date) " +
-                                    "values(" + article.title_no + ",'" + article.title_msg + "','" + article.title_name + "'," + article.create_user + ",'" + article.create_date+ "')", -1);
+                tb = db.ExecuteSql(strSql.ToString(), -1);
 
             }
             catch (Exception ex)

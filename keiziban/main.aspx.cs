@@ -18,10 +18,21 @@ namespace keiziban
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            string no = utils.NullChkString(Request.QueryString["no"]);
+
             ReadArticle();
             loadDdl();
 
+            if (!IsPostBack)
+            {
+                ReadThread(no);
+            }
+
             this.txtLogDate.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時MM分");
+            if (no.Length == 0)
+            {
+             // thread 表示なし処理  
+            }
         }
 
         #region ツイート：ボタン押し時
@@ -92,6 +103,17 @@ namespace keiziban
 
         }
 
+        private bool ReadThread(string no)
+        {
+            ClsArticle db = new ClsArticle();
+            var articles = db.GetArticles();
+
+            this.rptListItems2.DataSource = articles;
+            this.rptListItems2.DataBind();
+            
+            return true;
+        }
+
         private bool loadDdl()
         {
             ClsArticle db = new ClsArticle();
@@ -106,5 +128,9 @@ namespace keiziban
             return true;
         }
 
+        protected void btnThreReg_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

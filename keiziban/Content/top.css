@@ -20,9 +20,20 @@
     display: block;
     margin: 0 0 0 auto;
 }
+.media-heading {
+    font-size: 0.7em;
+    border-bottom: solid 2px #ddd;
+    text-align: left;
+    padding: 10px 0;
+    
+}
 
-.media-footer{
-    width:95%;
+.media-heading:hover{
+    background-color:antiquewhite;
+}
+
+.media-footer {
+    width: 95%;
 }
 
 #head{
@@ -55,4 +66,42 @@
     margin-top:15px;
 }
 
+.icon{
+    width:7%;
+    padding-right:10px;
+}
 
+.no {
+    background-color: #fff;
+    margin-bottom: 10px; 
+    margin-left: 20px;
+}
+
+.title{
+    text-align:left;
+    color:black;
+}
+
+.topDescript {
+    font-size: 0.8em;
+    color: gray;
+    padding-left:10px;
+}
+
+.caption {
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.homemsg {
+
+}
+
+.error {
+    text-align:center;
+}
+
+.bkHome{
+    text-align:right;
+    padding-right:60px;
+}

@@ -61,7 +61,6 @@ body{
     margin-left: auto;
     margin-right: auto;
     box-sizing: content-box;
-    border: inset 1px gray;
 }
 
 #txtInput {

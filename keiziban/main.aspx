@@ -86,55 +86,86 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="item item_main">
+                    <div class="item item_main" id="head">
                         <div class="articleinput" style="background-color: #fff;">
                             <li class="media minput">
-                                <div class="pull-left">
-                                </div>
                                 <div class="media-heading">
-                                    <asp:Label class="lbl" runat="server" >ジャンル</asp:Label><asp:DropDownList ID="ddlMenu" runat="server"></asp:DropDownList>                                   
+                                    <asp:Label class="lbl" runat="server">ジャンル</asp:Label><asp:DropDownList ID="ddlMenu" runat="server"></asp:DropDownList>
                                 </div>
-                                <asp:Label class="lbl" runat="server" >タイトル </asp:Label><asp:TextBox id="txtTitle"  runat="server"></asp:TextBox> 
+                                <asp:Label class="lbl" runat="server">タイトル </asp:Label><asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
                                 <div class="media-body" style="">
-                                    <asp:TextBox id="txtInput" TextMode="MultiLine"  rows="5" runat="server"></asp:TextBox> 
+                                    <asp:TextBox ID="txtInput" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
                                 </div>
                             </li>
-                            <div class="media-footer"  >
-                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click"/>
+                            <div class="media-footer">
+                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click" />
                             </div>
                         </div>
                     </div>
-                    <div class="item item_main">
+                    <div class="item item_main" id="body">
                         <asp:Repeater ID="rptListItems" runat="server">
                             <ItemTemplate>
-                                <div class="article" style="background-color: #fff;">
-                                    <li class="media mBook">
-                                        <div class="pull-left">
-                                        </div>
+                                <div style="background-color: #fff;margin-bottom:30px;margin-left:20px;" no="<%# Eval("kanri_no") %>">
                                         <div class="media-heading">
-                                            <p>
-                                                <img class="media-objec" src='./img/news.png'  />
+                                            <span>
+                                                <img class="media-objec" src='./img/news.png' />
                                                 タイトル : <%# Eval("title_name") %>
-                                            </p>
-
-
+                              
+                                            </span>
                                         </div>
-                                        <div class="media-body">
-                                            <p class="pDescript">本文 :  <%# Eval("title_msg") %> </p>
-                                            <span class="pPublish">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
-                                        </div>
-                                    </li>
+                                            <span class="pDescript">本文 :  <%# Eval("title_msg") %> </span><br />
+                                            <span class="pDescript">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
+                                    
+
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
                 </div>
                 <div class="col-sm-3">
+                    <asp:Label runat="server">
+                                                        <div class="media-heading">
+                                    <span>
+                                        <img class="media-objec" src='./img/news.png' />
+                                        タイトル : <%# Eval("title_name") %>
+                                    </span>
+                                </div>
+                    </asp:Label>
+                    <div class="item item_sidebar" id="thread">
+                        <asp:Repeater ID="rptListItems2" runat="server">
+                            <HeaderTemplate>
+
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <div style="background-color: #fff;margin:20px;" no="<%# Eval("kanri_no") %>">
+                                        <div >
+                                            <span class="pDescript" >本文 :  <%# Eval("title_msg") %> </span><br />
+                                            <span class="pDescript">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
+                                        </div>
+                                </div>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                    </div>
+                    <div class="item item_main" id="threadform">
+                        <div class="articleinput" style="background-color: #fff;">
+                            <li class="media minput">
+                                <div class="media-body">
+                                    <asp:TextBox ID="txtThread" Style="width: 90%;" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                </div>
+                            </li>
+                            <div class="media-footer" style="text-align: right">
+                                <asp:Button ID="btnThreReg" class="btn btn-primary" style="margin-right:10px;" runat="server" Text="ツイート" OnClick="btnThreReg_Click" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="item item_sidebar">sidebar</div>
             </div>
-            <div class="col-sm-12 item item_footer">footer</div>
+
+
         </div>
+        <div class="col-sm-12 item item_footer">footer</div>
     </form>
 </body>
 <script src="./Scripts/jquery-3.4.1.min.js"></script>
