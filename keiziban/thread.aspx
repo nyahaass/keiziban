@@ -8,7 +8,7 @@
     <title>掲示板</title>
     <link rel="stylesheet" type="text/css" href="./Content/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./Content/Site.css">
-    <link rel="stylesheet" type="text/css" href="./Content/top.css">
+    <link rel="stylesheet" type="text/css" href="./Content/thread.css">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -65,35 +65,77 @@
             </nav>
             <div class="row">
                 <div class="caption">
-                <p class="homemsg"><h3>どちゃくそ掲示板</h3></p>
-                <details>
-                    <summary>書き込み一覧</summary>
-                    <dl>
-                        <dt>ゆっくりしていってほしい</dt>                        
-                    </dl>
-                </details></div>
+                    <h3 class="homemsg">
+                        <label>どちゃくそ掲示板:スレッド</label>
+                    </h3>
+                    <h3 class="homemsg">
+                        <p id="title">
+                            <asp:Label ID="txtTitle" runat="server"></asp:Label></p>
+                    </h3>
+
+                    <p id="info">
+                        <asp:Label ID="txtInfo" runat="server"></asp:Label></p>
+                    <hr />
+                </div>
+                <asp:HiddenField ID="threadno" runat="server"/>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
                     <div class="item item_main" id="head">
+                        <div class="item item_main">
+                            <div class="no" no="<%# Eval("kanri_no") %>">
+                                <div class="media-heading">
+                                    <p class="title">
+                                        <img class="media-objec iPeple" src='./img/peple.png' />
+                                            <asp:Label runat="server" ID="txtThTitle"></asp:Label>
+                                            <span class="pDescript">ユーザー : 
+                                            <asp:Label runat="server" ID="txtThUser"></asp:Label>
+                                            <label>作成日</label>
+                                            <asp:Label runat="server" ID="txtThDate"></asp:Label>
+                                            none"</span>
+                                    </p>
+                                    <asp:Label class="topDescript" runat="server" ID="txtThMsg"> </asp:Label>
+                                </div>
+                                <div id="footer" class="goodicon">
+                                    <span class="glyphicon glyphicon-heart goodicon" aria-hidden="true"></span>
+                                    <asp:Label runat="server" ID="lblGood"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="item item_main" id="body">
                             <asp:Repeater ID="rptListItems" runat="server">
-                                <ItemTemplate>
+                                <HeaderTemplate>
                                     <div class="no" no="<%# Eval("kanri_no") %>">
                                         <div class="media-heading">
                                             <p class="title">
-                                                <img class="media-objec icon" src='./img/news.png' />タイトル : <%# Eval("title_name") %>
+                                                <img class="media-objec icon" src='./img/peple.png' /> <%# Eval("title_name") %>
                                                 <span class="pDescript">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
                                             </p>
                                             <span class="topDescript"><%# Eval("title_msg") %> </span>
                                         </div>
                                     </div>
+                                </HeaderTemplate>
+                                <ItemTemplate>
                                 </ItemTemplate>
                             </asp:Repeater>
+                        </div>
+                    </div>
+                    <div class="item item_main" id="head2">
+                        <div class="articleinput" style="background-color: #fff;">
+                            <li class="media minput">
+                                <h4>返信する：</h4>
+                                <div class="media-body" style="">
+                                    <asp:TextBox ID="txtInput" TextMode="MultiLine" Rows="5" runat="server"></asp:TextBox>
+                                </div>
+                            </li>
+                            <div class="media-footer">
+                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3"></div>
             </div>
+        </div>
     </form>
 </body>
 <script src="./Scripts/jquery-3.4.1.min.js"></script>

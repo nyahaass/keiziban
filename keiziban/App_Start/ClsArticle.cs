@@ -75,6 +75,50 @@ namespace keiziban.App_Start
             return articles;
         }
 
+        public ARTICLE GetArticle(int no)
+        {
+            List<ARTICLE> articles = new List<ARTICLE>();
+            StringBuilder strSql = new StringBuilder();
+            ClsDb db = new ClsDb();
+            DataTable tb;
+
+            strSql.AppendLine("SELECT * FROM article_title");
+            strSql.AppendLine("WHERE kanri_no = " + utils.NullChkToInt(no));
+            strSql.AppendLine("ORDER BY create_date DESC");
+
+            try
+            {
+                db.Connect();
+                tb = db.ExecuteSql(strSql.ToString(), -1);
+
+                if (tb.Rows.Count == 0) return null;
+
+                foreach (DataRow dr in tb.Rows)
+                {
+                    ARTICLE article = new ARTICLE();
+
+                    article.kanri_no = utils.NullChkToInt(dr["kanri_no"]);
+                    article.title_no = utils.NullChkToInt(dr["title_no"]);
+                    article.title_name = utils.NullChkString(dr["title_name"]);
+                    article.title_msg = utils.NullChkString(dr["title_msg"]);
+                    article.create_user = utils.NullChkToInt(dr["create_user"]);
+
+                    return article;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.ToString());
+            }
+            finally
+            {
+                db.Disconnect();
+            }
+
+            return null;
+        }
+
         internal List<CATEGORY> GetCategorys()
         {
             List<CATEGORY> categorys = new List<CATEGORY>();
