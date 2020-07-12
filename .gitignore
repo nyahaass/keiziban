@@ -1,0 +1,10 @@
+keiziban/bin/
+keiziban/obj/
+.vs/
+.git/
+packages/
+keiziban.slni
+keiziban/keiziban.csproj.user
+keiziban/keiziban.csproj
+
+
