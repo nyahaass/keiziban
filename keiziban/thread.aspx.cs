@@ -27,7 +27,10 @@ namespace keiziban
                 PageNotFound();
             }
 
-            ReadArticle(no);
+            if (!ReadArticle(no))
+            {
+
+            }
 
             if (!IsPostBack)
             {
@@ -43,9 +46,10 @@ namespace keiziban
 
             //this.rptListItems.DataSource = articles;
             //this.rptListItems.DataBind();
-            if (article is null) return true;
+            if (article is null) return false;
 
-            this.threadno.Value = utils.NullChkString(no);
+            this.hdnKanriNo.Value = utils.NullChkString(no);
+            this.hdnUserNo.Value = utils.NullChkString(article.create_user);            
 
             this.txtTitle.Text = "タイトル名 : " + article.title_name;
             this.txtInfo.Text = "この記事は"　+ article.create_user + "さんにより " + article.create_date.ToString("yy年MM月dd日") + "に作成されました";
@@ -58,26 +62,45 @@ namespace keiziban
 
         }
 
+        private bool ReadThread(int kno)
+        {
+            ClsThread cThread = new ClsThread();
+            int threadno = cThread.GetThreadNo(kno);
+
+            if (threadno == 0)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            return true;
+
+        }
+
+        #region スレッド取得
+        private bool GetThread(int kanrino, int threadno)
+        {
+            ClsThread cThread = new ClsThread();
+            
+            return true;
+        }
+        #endregion
+
+
         private bool PageNotFound()
         {
             Response.Redirect("notfound.aspx");
             return true;
         }
 
-        protected bool btnReg_Click(object sender, EventArgs e)
+        private bool ThredNotFount()
         {
-            if (ChkReg())
-            {
-                return false;
-            }
-
-            if (RegData())
-            {
-                return true;
-            }
-
+            this.lblTitle.Text = "スレッドに書き込みがありません";
+            this.imgTitle.ImageUrl = "./img/nodata.png";
             return true;
-
         }
 
         #region 入力チェック
@@ -89,7 +112,7 @@ namespace keiziban
 
             }
 
-            if (this.threadno.Value.Length == 0)
+            if (this.hdnThreadNo.Value.Length == 0)
             {
                 return false;
             }
@@ -101,8 +124,69 @@ namespace keiziban
         #region データ登録
         private bool RegData()
         {
+            ClsThread cThread = new ClsThread();
+            keiziban.App_Start.THREAD thread = GetRegData();
+
+
+            cThread.InsThread(thread);
+
             return true;
         }
         #endregion
+
+        #region データ登録の取得
+        private keiziban.App_Start.THREAD  GetRegData()
+        {
+            keiziban.App_Start.THREAD thread = new keiziban.App_Start.THREAD();
+            ClsThread cThread = new ClsThread();
+
+            int threadno = utils.NullChkToInt(this.hdnThreadNo.Value);
+            int kanrino = threadno;
+
+            int subno = cThread.GetSubNo(kanrino,threadno);
+
+            thread.thread_msg = utils.NullChkString(this.txtInput.Text);
+            thread.sub_no = subno;
+            
+            return thread;
+        }
+        #endregion
+
+        #region スレッド番号の取得
+        private int GetThreadNo(int kanrino)
+        {
+
+            ClsThread cThread = new ClsThread();
+            int subno = cThread.GetThreadNo(kanrino);
+
+            return subno;
+        }
+        #endregion
+
+        #region スレッドサブ番号の取得
+        private int GetSubNo(int kanrino, int threadno)
+        {
+            
+            ClsThread cThread = new ClsThread();
+            int subno = cThread.GetSubNo(kanrino, threadno);
+
+            return subno;
+        }
+        #endregion
+
+        protected void btnReg_Click(object sender, EventArgs e)
+        {
+            if (ChkReg())
+            {
+                return;
+            }
+
+            if (RegData())
+            {
+                return;
+            }
+
+            return;
+        }
     }
 }

@@ -42,13 +42,31 @@ namespace keiziban
         protected global::System.Web.UI.WebControls.Label txtInfo;
 
         /// <summary>
-        /// threadno コントロール。
+        /// hdnThreadNo コントロール。
         /// </summary>
         /// <remarks>
         /// 自動生成されたフィールド。
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField threadno;
+        protected global::System.Web.UI.WebControls.HiddenField hdnThreadNo;
+
+        /// <summary>
+        /// hdnKanriNo コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnKanriNo;
+
+        /// <summary>
+        /// hdnUserNo コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnUserNo;
 
         /// <summary>
         /// txtThTitle コントロール。
@@ -103,6 +121,24 @@ namespace keiziban
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptListItems;
+
+        /// <summary>
+        /// lblTitle コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitle;
+
+        /// <summary>
+        /// imgTitle コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgTitle;
 
         /// <summary>
         /// txtInput コントロール。

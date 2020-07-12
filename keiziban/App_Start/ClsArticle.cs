@@ -9,13 +9,6 @@ using log4net;
 namespace keiziban.App_Start
 {
 
-
-    class CATEGORY
-    {
-        public int category_id { get; set; }
-        public string category_name { get; set; }
-    }
-
     class ARTICLE
     {
         public int kanri_no { get; set; }

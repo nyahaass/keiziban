@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./Content/thread.css">
 </head>
 <body>
+    <a href="edit.aspx.designer.cs">edit.aspx.designer.cs</a>
     <form id="form1" runat="server">
         <div class="container">
             <nav class="navbar navbar-default ">
@@ -70,14 +71,18 @@
                     </h3>
                     <h3 class="homemsg">
                         <p id="title">
-                            <asp:Label ID="txtTitle" runat="server"></asp:Label></p>
+                            <asp:Label ID="txtTitle" runat="server"></asp:Label>
+                        </p>
                     </h3>
 
                     <p id="info">
-                        <asp:Label ID="txtInfo" runat="server"></asp:Label></p>
+                        <asp:Label ID="txtInfo" runat="server"></asp:Label>
+                    </p>
                     <hr />
                 </div>
-                <asp:HiddenField ID="threadno" runat="server"/>
+                <asp:HiddenField ID="hdnThreadNo" runat="server" />
+                <asp:HiddenField ID="hdnKanriNo" runat="server" />
+                <asp:HiddenField ID="hdnUserNo" runat="server" />
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
                     <div class="item item_main" id="head">
@@ -86,8 +91,8 @@
                                 <div class="media-heading">
                                     <p class="title">
                                         <img class="media-objec iPeple" src='./img/peple.png' />
-                                            <asp:Label runat="server" ID="txtThTitle"></asp:Label>
-                                            <span class="pDescript">ユーザー : 
+                                        <asp:Label runat="server" ID="txtThTitle"></asp:Label>
+                                        <span class="pDescript">ユーザー : 
                                             <asp:Label runat="server" ID="txtThUser"></asp:Label>
                                             <label>作成日</label>
                                             <asp:Label runat="server" ID="txtThDate"></asp:Label>
@@ -103,20 +108,27 @@
                         </div>
                         <div class="item item_main" id="body">
                             <asp:Repeater ID="rptListItems" runat="server">
-                                <HeaderTemplate>
+                                <ItemTemplate>
                                     <div class="no" no="<%# Eval("kanri_no") %>">
                                         <div class="media-heading">
                                             <p class="title">
-                                                <img class="media-objec icon" src='./img/peple.png' /> <%# Eval("title_name") %>
+                                                <img class="media-objec icon" src='./img/peple.png' />
+                                                <%# Eval("title_name") %>
                                                 <span class="pDescript">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
                                             </p>
                                             <span class="topDescript"><%# Eval("title_msg") %> </span>
                                         </div>
                                     </div>
-                                </HeaderTemplate>
-                                <ItemTemplate>
                                 </ItemTemplate>
                             </asp:Repeater>
+                        </div>
+                        <div class="item item_main" id="footer2">
+                                <div class="media-heading">
+                                    <p class="title">
+                                        <asp:label ID="lblTitle" class="pDescript" runat="server"></asp:label>
+                                        <asp:image id="imgTitle" class="media-objec" src='' runat="server"></asp:image>
+                                    </p>
+                                </div>
                         </div>
                     </div>
                     <div class="item item_main" id="head2">
@@ -128,7 +140,7 @@
                                 </div>
                             </li>
                             <div class="media-footer">
-                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click" />
+                              <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click"/>
                             </div>
                         </div>
                     </div>
@@ -137,9 +149,9 @@
             </div>
         </div>
     </form>
+    <script src="./Scripts/jquery-3.4.1.min.js"></script>
+    <script src="./Scripts/bootstrap.min.js"></script>
+    <script src="./Scripts/thread.js"></script>
 </body>
-<script src="./Scripts/jquery-3.4.1.min.js"></script>
-<script src="./Scripts/bootstrap.min.js"></script>
-<script src="./Scripts/top.js"></script>
 </html>
 

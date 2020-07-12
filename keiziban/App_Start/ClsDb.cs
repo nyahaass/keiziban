@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Configuration;
 using log4net;
+using System.Data.SqlClient;
 
 namespace keiziban.App_Start
 {
@@ -94,6 +95,8 @@ namespace keiziban.App_Start
                 adapter.Dispose();
                 sqlCommand.Dispose();
 
+               
+
             }
             catch (Exception ex)
             {
@@ -103,11 +106,48 @@ namespace keiziban.App_Start
             return dt;
         }
 
-        /// <summary>
-        /// トランザクション開始
-        /// </summary>
-        /// <remarks></remarks>
-        public void BeginTransaction()
+        public bool ExecuteNonQuery(string sql)
+        {
+            // 接続文字列の取得
+            var connectionString = ConfigurationManager.AppSettings["dbConStr"];
+
+            if (sql.Length == 0) return true;
+
+            using (var connection = new OdbcConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                try
+                {
+                    // データベースの接続開始
+                    connection.Open();
+
+                    // SQLの準備
+                    command.CommandText = sql;
+
+
+                    // SQLの実行
+                    command.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch (Exception exception)
+                {
+                    log.Error(exception.ToString());
+                    return false;
+                }
+                finally
+                {
+                    // データベースの接続終了
+                    connection.Close();
+                }
+            }
+        }
+
+            /// <summary>
+            /// トランザクション開始
+            /// </summary>
+            /// <remarks></remarks>
+            public void BeginTransaction()
         {
             try
             {
