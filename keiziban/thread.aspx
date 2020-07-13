@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./Content/thread.css">
 </head>
 <body>
-    <a href="edit.aspx.designer.cs">edit.aspx.designer.cs</a>
+    <!-- <a href="edit.aspx.designer.cs">edit.aspx.designer.cs</a>-->
     <form id="form1" runat="server">
         <div class="container">
             <nav class="navbar navbar-default ">
@@ -96,7 +96,7 @@
                                             <asp:Label runat="server" ID="txtThUser"></asp:Label>
                                             <label>作成日</label>
                                             <asp:Label runat="server" ID="txtThDate"></asp:Label>
-                                            none"</span>
+                                        </span>
                                     </p>
                                     <asp:Label class="topDescript" runat="server" ID="txtThMsg"> </asp:Label>
                                 </div>
@@ -112,12 +112,18 @@
                                     <div class="no" no="<%# Eval("kanri_no") %>">
                                         <div class="media-heading">
                                             <p class="title">
-                                                <img class="media-objec icon" src='./img/peple.png' />
-                                                <%# Eval("title_name") %>
-                                                <span class="pDescript">ユーザー :  <%# Eval("create_user") %> 作成日: none</span>
+                                                <img class="media-objec iPeple" src='./img/peple.png' />
+                                                <span class="pDescript">ユーザー :  <%# Eval("user_id") %>
+                                                    <label class="thread">作成日</label>
+                                                    <%# Eval("create_Date") %>
+                                                </span>
                                             </p>
-                                            <span class="topDescript"><%# Eval("title_msg") %> </span>
+                                            <span class="topDescript"><%# Eval("thread_msg") %> </span>
                                         </div>
+                                    </div>
+                                    <div id="footer2" class="goodicon">
+                                        <span class="glyphicon glyphicon-heart goodicon2" style="" aria-hidden="true"></span>
+                                        <asp:Label runat="server" ID="lblGood"></asp:Label>
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>

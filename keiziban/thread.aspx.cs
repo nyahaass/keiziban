@@ -25,7 +25,8 @@ namespace keiziban
                 PageNotFound();
             }
 
-            ReadArticle(no);           
+            ReadArticle(no);
+            ReadThread(no);
         }
 
         private bool ReadArticle(int no)
@@ -46,7 +47,6 @@ namespace keiziban
             this.txtThDate.Text = article.create_date.ToString("yy年MM月dd日");
 
             return true;
-
         }
 
         private bool ReadThread(int kno)
@@ -54,7 +54,7 @@ namespace keiziban
             ClsThread cThread = new ClsThread();
             int tno = cThread.GetThreadNo(kno);
 
-            if (tno == 0)
+            if (tno > 0)
             {
                 GetThreadItems(kno,tno);
             }
@@ -66,8 +66,11 @@ namespace keiziban
         private bool GetThreadItems(int kno, int tno)
         {
             ClsThread cThread = new ClsThread();
-            List<keiziban.App_Start.THREAD> titems = cThread.GetThreadItems(kno,tno);
-            
+            List<keiziban.App_Start.THREAD> tItems = cThread.GetThreadItems(kno,tno);
+
+            this.rptListItems.DataSource = tItems;
+            this.rptListItems.DataBind();
+
             return true;
         }
         #endregion
@@ -114,9 +117,9 @@ namespace keiziban
             {
                 this.hdnThreadNo.Value = utils.NullChkString(thread.thread_no);
                 this.hdnKanriNo.Value = utils.NullChkString(thread.kanri_no);
-
-                GetThreadItems(thread.kanri_no,thread.thread_no);
             }
+
+            ReadThread(thread.kanri_no);
 
             return true;
         }

@@ -40,7 +40,7 @@ namespace keiziban.App_Start
 
             strSql.AppendLine("SELECT * FROM thread");
             strSql.AppendLine("WHERE thread_no = " + tno);
-            strSql.AppendLine("WHERE kanri_no = " + kno);
+            strSql.AppendLine("AND kanri_no = " + kno);
             strSql.AppendLine("ORDER BY sub_no DESC");
 
             try

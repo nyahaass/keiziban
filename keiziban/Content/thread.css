@@ -129,6 +129,17 @@
 
 .goodicon{
     width:80%;
-    font-size:1.2em;
+    font-size:1.1em;
     text-align:right;
+}
+
+.goodicon2 {
+    width: 80%;
+    font-size: 1.1em;
+    text-align: right;
+    padding-left: 30px;
+}
+
+.thread {
+    padding-left: 30px;
 }
