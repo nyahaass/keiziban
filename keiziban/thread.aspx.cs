@@ -141,13 +141,23 @@ namespace keiziban
             ClsThread cThread = new ClsThread();
 
             int threadno = utils.NullChkToInt(this.hdnThreadNo.Value);
-            int kanrino = threadno;
-
+            int kanrino = utils.NullChkToInt(this.hdnKanriNo.Value); ;
+            int userno = utils.NullChkToInt(this.hdnUserNo.Value);
             int subno = cThread.GetSubNo(kanrino,threadno);
 
             thread.thread_msg = utils.NullChkString(this.txtInput.Text);
+
+
+            if (subno == 0) subno++;
+            if (threadno == 0) threadno++;
+
             thread.sub_no = subno;
-            
+            thread.kanri_no = kanrino;
+            thread.thread_no = threadno;
+            thread.user_id = userno;
+            thread.create_date = DateTime.Now;
+            thread.update_date = DateTime.Now;
+
             return thread;
         }
         #endregion
