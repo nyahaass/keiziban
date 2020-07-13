@@ -1,0 +1,154 @@
+﻿.book{
+    width:1000px;
+    height:1000px;
+}
+
+.mBook{
+    height:100px;
+    margin:10px;
+}
+
+.mInput {
+    height: 100px;
+    width:100%;
+    margin: 1px;
+}
+
+.pDescript{
+    font-size:11px;
+}
+
+#btnReg {
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+.media-heading {
+    font-size: 0.7em;
+    border-bottom: solid 2px #ddd;
+    text-align: left;
+    padding: 10px 0;    
+}
+
+.media-footer {
+    width: 95%;
+}
+
+#head{
+    display:block;
+    width:500px;
+    height:200px;
+    margin-bottom:15px;
+
+}
+
+#body {
+    display: block;
+    width: 500px;
+    height:400px;
+    overflow: auto;
+    -ms-overflow-style: none;   
+}
+
+#thread {
+    display: block;
+    height: 350px;
+    width: 300px;
+    overflow: auto;
+    -ms-overflow-style: none;
+}
+
+#threadform {
+    width: 300px;
+    height:200px;
+    margin-top:15px;
+}
+
+.icon{
+    width:7%;
+    padding-right:10px;
+}
+
+.iPeple {
+    width: 5%;
+    padding-right: 5px;
+}
+
+.no {
+    background-color: #fff;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.title{
+    text-align:left;
+    color:black;
+}
+
+.topDescript {
+    font-size: 1.4em;
+    color: black;
+    padding-left:10px;
+}
+
+.caption {
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.homemsg {
+    text-align: left;
+    padding-left: 60px;
+}
+
+.error {
+    text-align:center;
+}
+
+.bkHome{
+    text-align:left;
+    padding-left:60px;
+}
+
+#title{
+    text-align:left;
+    padding-left:64px;
+    padding-top:3px;
+    color:brown;
+
+}
+
+#info{
+   text-align:right;
+   width:95%;
+}
+
+#txtThUser {
+    padding-right:30px;
+}
+
+.goodicon{
+    width:80%;
+    font-size:1.1em;
+    text-align:right;
+}
+
+.goodicon2 {
+    width: 80%;
+    font-size: 1.1em;
+    text-align: right;
+    padding-left: 30px;
+}
+
+.thread {
+    padding-left: 30px;
+}
+
+#txtDateFr, #txtDateTo{
+    width: 90px;
+    text-align:center;
+}
+
+#nami{
+
+}
