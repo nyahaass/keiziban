@@ -133,18 +133,17 @@ namespace keiziban
 
             int tno = utils.NullChkToInt(this.hdnThreadNo.Value);
             int kno = utils.NullChkToInt(this.hdnKanriNo.Value); ;
-            int userno = utils.NullChkToInt(this.hdnUserNo.Value);
+            int uno = utils.NullChkToInt(this.hdnUserNo.Value);
             int sno = cThread.GetSubNo(kno,tno);
 
-            thread.thread_msg = utils.NullChkString(this.txtInput.Text);
-
-            if (sno == 0) sno++;
-            if (tno == 0) tno++;
-
+            tno++;
+            sno++;
+            
             thread.sub_no = sno;
             thread.kanri_no = kno;
             thread.thread_no = tno;
-            thread.user_id = userno;
+            thread.thread_msg = utils.NullChkString(this.txtInput.Text);
+            thread.user_id = uno;
             thread.create_date = DateTime.Now;
             thread.update_date = DateTime.Now;
 
