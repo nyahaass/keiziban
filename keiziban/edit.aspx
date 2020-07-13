@@ -90,23 +90,23 @@
                     <div class="well edit">
                         <div class="item item_main">
                             <div class="form-group">
-                                <asp:label id="lblName" for="txtName" runat="server">ユーザー名</asp:label>
-                                <asp:TextBox  id="txtName" class="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblName" for="txtName" runat="server">ユーザー名</asp:Label>
+                                <asp:TextBox ID="txtName" class="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:label id="lblPass" for="txtPass" runat="server">パスワード</asp:label>
-                                <asp:TextBox  id="txtPass" type="password" class="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblPass" for="txtPass" runat="server">パスワード</asp:Label>
+                                <asp:TextBox ID="txtPass" type="password" class="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:label id="lblMail" for="txtMail" runat="server">メールアドレス</asp:label>
-                                <asp:TextBox  id="txtMail"  class="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblMail" for="txtMail" runat="server">メールアドレス</asp:Label>
+                                <asp:TextBox ID="txtMail" class="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:label ID="lblProfile"  for="txtProfile" runat="server">プロフィールメッセージ</asp:label>
-                                <asp:TextBox id="txtProfile" TextMode="MultiLine" class="form-control" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblProfile" for="txtProfile" runat="server">プロフィールメッセージ</asp:Label>
+                                <asp:TextBox ID="txtProfile" TextMode="MultiLine" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                            <div class="media-footer"  >
-                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="保存" OnClick="btnReg_Click"/>
+                            <div class="media-footer">
+                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="保存" OnClick="btnReg_Click" />
                             </div>
                         </div>
                     </div>

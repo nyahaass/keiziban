@@ -17,7 +17,6 @@ namespace keiziban
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string no = utils.NullChkString(Request.QueryString["no"]);
 
             ReadArticle();
@@ -29,6 +28,7 @@ namespace keiziban
             }
 
             this.txtLogDate.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH時MM分");
+         
             if (no.Length == 0)
             {
              // thread 表示なし処理  
@@ -38,8 +38,6 @@ namespace keiziban
         #region ツイート：ボタン押し時
         protected void btnReg_Click(object sender, EventArgs e)
         {
-
-
             if (ChkArticle())
             {
                 RegArticle();
@@ -64,6 +62,7 @@ namespace keiziban
             {
                 return false;
             }
+
             return true;
         }
         #endregion
@@ -100,7 +99,6 @@ namespace keiziban
             this.rptListItems.DataBind();
 
             return true;
-
         }
 
         private bool ReadThread(string no)

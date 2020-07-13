@@ -17,7 +17,6 @@ textarea {
     max-width: 95%;
     margin: 5px;
 }
-  
 
 body{
     width:100%;
@@ -28,9 +27,11 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .login {
     text-align: center;
 }
+
 #loginform {
     width: 25%;
     display: block;
@@ -78,5 +79,3 @@ body{
     font-size: 0.8em;
     color: gray;
 }
-
-

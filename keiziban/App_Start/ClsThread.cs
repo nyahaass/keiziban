@@ -8,7 +8,6 @@ using log4net;
 
 namespace keiziban.App_Start
 {
-
     class CATEGORY
     {
         public int category_id { get; set; }
@@ -32,17 +31,16 @@ namespace keiziban.App_Start
         ClsUtils utils = new ClsUtils();
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-
-        public List<THREAD> GetThread(int kanrino, int threadno)
+        public List<THREAD> GetThreadItems(int kno, int tno)
         {
-            List<THREAD> threads = new List<THREAD>();
+            List<THREAD> titems = new List<THREAD>();
             StringBuilder strSql = new StringBuilder();
             ClsDb db = new ClsDb();
             DataTable tb;
 
             strSql.AppendLine("SELECT * FROM thread");
-            strSql.AppendLine("WHERE thread_no = " + threadno);
-            strSql.AppendLine("WHERE kanri_no = " + kanrino);
+            strSql.AppendLine("WHERE thread_no = " + tno);
+            strSql.AppendLine("WHERE kanri_no = " + kno);
             strSql.AppendLine("ORDER BY sub_no DESC");
 
             try
@@ -52,32 +50,31 @@ namespace keiziban.App_Start
 
                 foreach (DataRow dr in tb.Rows)
                 {
-                    THREAD thread = new THREAD();
+                    THREAD titem = new THREAD();
 
-                    thread.thread_no = utils.NullChkToInt(dr["thread_no"]);
-                    thread.kanri_no = utils.NullChkToInt(dr["kanri_no"]);
-                    thread.user_id = utils.NullChkToInt(dr["user_id"]);
-                    thread.good_count = utils.NullChkToInt(dr["good_count"]);
-                    thread.sub_no = utils.NullChkToInt(dr["sub_no"]);
-                    thread.create_date = (DateTime)dr["create_Date"];
-                    thread.update_date = (DateTime)dr["update_date"];
-                    thread.thread_msg = utils.NullChkString(dr["thread_msg"]);
+                    titem.thread_no = utils.NullChkToInt(dr["thread_no"]);
+                    titem.kanri_no = utils.NullChkToInt(dr["kanri_no"]);
+                    titem.user_id = utils.NullChkToInt(dr["user_id"]);
+                    titem.good_count = utils.NullChkToInt(dr["good_count"]);
+                    titem.sub_no = utils.NullChkToInt(dr["sub_no"]);
+                    titem.create_date = (DateTime)dr["create_Date"];
+                    titem.update_date = (DateTime)dr["update_date"];
+                    titem.thread_msg = utils.NullChkString(dr["thread_msg"]);
 
-                    threads.Add(thread);
-
+                    titems.Add(titem);
                 }
             }
             catch (Exception ex)
             {
                 log.Error(ex.ToString());
-                return threads;
+                return titems;
             }
             finally
             {
                 db.Disconnect();
             }
 
-            return threads;
+            return titems;
         }
         public bool InsThread(THREAD thread)
         {
@@ -191,6 +188,5 @@ namespace keiziban.App_Start
 
             return 0;
         }
-
     }
 }

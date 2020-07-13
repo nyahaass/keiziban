@@ -38,6 +38,7 @@ namespace keiziban.App_Start
                 }
 
                 String cst = ConfigurationManager.AppSettings["dbConStr"]; 
+
                 if (cst.Length == 0)
                 {
                     return ;
@@ -45,7 +46,6 @@ namespace keiziban.App_Start
 
                 _con.ConnectionString = cst;
                _con.Open();
-
             }
             catch (Exception ex)
             {
@@ -94,9 +94,6 @@ namespace keiziban.App_Start
                 adapter.Fill(dt);
                 adapter.Dispose();
                 sqlCommand.Dispose();
-
-               
-
             }
             catch (Exception ex)
             {
@@ -124,7 +121,6 @@ namespace keiziban.App_Start
                     // SQLの準備
                     command.CommandText = sql;
 
-
                     // SQLの実行
                     command.ExecuteNonQuery();
 
@@ -142,12 +138,11 @@ namespace keiziban.App_Start
                 }
             }
         }
-
             /// <summary>
             /// トランザクション開始
             /// </summary>
             /// <remarks></remarks>
-            public void BeginTransaction()
+        public void BeginTransaction()
         {
             try
             {

@@ -17,17 +17,9 @@ namespace keiziban
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string no = utils.NullChkString(Request.QueryString["no"]);
 
-            ReadArticle();
-            
-
-            if (!IsPostBack)
-            {
-            
-            }
-            
+            ReadArticle();                       
         }
 
         private bool ReadArticle()
@@ -39,7 +31,6 @@ namespace keiziban
             this.rptListItems.DataBind();
 
             return true;
-
         }
     }
 }

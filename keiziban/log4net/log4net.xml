@@ -13,7 +13,7 @@
 		</appender>
 
         <appender name="testlog1" type="log4net.Appender.FileAppender">
-			<File value="C:\\dll\\testlog1.log" />
+			<File value="C:\\log\\keiziban.log" />
 			<AppendToFile value="true" />
 			<filter type="log4net.Filter.LevelRangeFilter">
                 <param name="LevelMin" value="INFO" />

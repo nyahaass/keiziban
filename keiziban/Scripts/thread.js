@@ -1,8 +1,7 @@
-﻿
-$(function () {
-
+﻿$(function () {
     $(document).on('click', '.btnReg', function () {
         RegTweet();
+
         return false;
     });
 
@@ -16,7 +15,6 @@ $(function () {
 function RequestArticle(article) {
     var no = article.getAttribute("no");
     location.href = "main.aspx?no=" + no;
-
 }
 
 function RegTweet() {

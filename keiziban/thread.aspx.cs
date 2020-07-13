@@ -17,26 +17,15 @@ namespace keiziban
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             int no = utils.NullChkToInt(Request.QueryString["no"]);
             string userid = utils.NullChkString(Session["userid"]);
-            
-
+    
             if (no == 0)
             {
                 PageNotFound();
             }
 
-            if (!ReadArticle(no))
-            {
-
-            }
-
-            if (!IsPostBack)
-            {
-            
-            }
-            
+            ReadArticle(no);           
         }
 
         private bool ReadArticle(int no)
@@ -44,8 +33,6 @@ namespace keiziban
             ClsArticle db = new ClsArticle();
             var article = db.GetArticle(no);
 
-            //this.rptListItems.DataSource = articles;
-            //this.rptListItems.DataBind();
             if (article is null) return false;
 
             this.hdnKanriNo.Value = utils.NullChkString(no);
@@ -65,34 +52,30 @@ namespace keiziban
         private bool ReadThread(int kno)
         {
             ClsThread cThread = new ClsThread();
-            int threadno = cThread.GetThreadNo(kno);
+            int tno = cThread.GetThreadNo(kno);
 
-            if (threadno == 0)
+            if (tno == 0)
             {
-
-            }
-            else
-            {
-
+                GetThreadItems(kno,tno);
             }
 
             return true;
-
         }
 
         #region スレッド取得
-        private bool GetThread(int kanrino, int threadno)
+        private bool GetThreadItems(int kno, int tno)
         {
             ClsThread cThread = new ClsThread();
+            List<keiziban.App_Start.THREAD> titems = cThread.GetThreadItems(kno,tno);
             
             return true;
         }
         #endregion
 
-
         private bool PageNotFound()
         {
             Response.Redirect("notfound.aspx");
+        
             return true;
         }
 
@@ -100,6 +83,7 @@ namespace keiziban
         {
             this.lblTitle.Text = "スレッドに書き込みがありません";
             this.imgTitle.ImageUrl = "./img/nodata.png";
+            
             return true;
         }
 
@@ -109,7 +93,6 @@ namespace keiziban
             if (this.txtInput.Text.Trim().Length == 0)
             {
                 return false;
-
             }
 
             if (this.hdnThreadNo.Value.Length == 0)
@@ -127,8 +110,13 @@ namespace keiziban
             ClsThread cThread = new ClsThread();
             keiziban.App_Start.THREAD thread = GetRegData();
 
+            if (cThread.InsThread(thread))
+            {
+                this.hdnThreadNo.Value = utils.NullChkString(thread.thread_no);
+                this.hdnKanriNo.Value = utils.NullChkString(thread.kanri_no);
 
-            cThread.InsThread(thread);
+                GetThreadItems(thread.kanri_no,thread.thread_no);
+            }
 
             return true;
         }
@@ -140,20 +128,19 @@ namespace keiziban
             keiziban.App_Start.THREAD thread = new keiziban.App_Start.THREAD();
             ClsThread cThread = new ClsThread();
 
-            int threadno = utils.NullChkToInt(this.hdnThreadNo.Value);
-            int kanrino = utils.NullChkToInt(this.hdnKanriNo.Value); ;
+            int tno = utils.NullChkToInt(this.hdnThreadNo.Value);
+            int kno = utils.NullChkToInt(this.hdnKanriNo.Value); ;
             int userno = utils.NullChkToInt(this.hdnUserNo.Value);
-            int subno = cThread.GetSubNo(kanrino,threadno);
+            int sno = cThread.GetSubNo(kno,tno);
 
             thread.thread_msg = utils.NullChkString(this.txtInput.Text);
 
+            if (sno == 0) sno++;
+            if (tno == 0) tno++;
 
-            if (subno == 0) subno++;
-            if (threadno == 0) threadno++;
-
-            thread.sub_no = subno;
-            thread.kanri_no = kanrino;
-            thread.thread_no = threadno;
+            thread.sub_no = sno;
+            thread.kanri_no = kno;
+            thread.thread_no = tno;
             thread.user_id = userno;
             thread.create_date = DateTime.Now;
             thread.update_date = DateTime.Now;
@@ -163,24 +150,22 @@ namespace keiziban
         #endregion
 
         #region スレッド番号の取得
-        private int GetThreadNo(int kanrino)
+        private int GetThreadNo(int kno)
         {
-
             ClsThread cThread = new ClsThread();
-            int subno = cThread.GetThreadNo(kanrino);
+            int tno = cThread.GetThreadNo(kno);
 
-            return subno;
+            return tno;
         }
         #endregion
 
         #region スレッドサブ番号の取得
-        private int GetSubNo(int kanrino, int threadno)
-        {
-            
+        private int Getsno(int kno, int tno)
+        {   
             ClsThread cThread = new ClsThread();
-            int subno = cThread.GetSubNo(kanrino, threadno);
+            int sno = cThread.GetSubNo(kno, tno);
 
-            return subno;
+            return sno;
         }
         #endregion
 

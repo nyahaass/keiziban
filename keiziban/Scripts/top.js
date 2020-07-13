@@ -1,6 +1,4 @@
-﻿
-$(function () {
-
+﻿$(function () {
     $(document).on('click', '.no', function () {
         var no = this;
         RequestArticle(no);
@@ -11,5 +9,4 @@ $(function () {
 function RequestArticle(article) {
     var no = article.getAttribute("no");
     location.href = "thread.aspx?no=" + no;
-
 }

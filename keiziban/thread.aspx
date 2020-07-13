@@ -123,12 +123,12 @@
                             </asp:Repeater>
                         </div>
                         <div class="item item_main" id="footer2">
-                                <div class="media-heading">
-                                    <p class="title">
-                                        <asp:label ID="lblTitle" class="pDescript" runat="server"></asp:label>
-                                        <asp:image id="imgTitle" class="media-objec" src='' runat="server"></asp:image>
-                                    </p>
-                                </div>
+                            <div class="media-heading">
+                                <p class="title">
+                                    <asp:Label ID="lblTitle" class="pDescript" runat="server"></asp:Label>
+                                    <asp:Image ID="imgTitle" class="media-objec" src='' runat="server"></asp:Image>
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div class="item item_main" id="head2">
@@ -140,7 +140,7 @@
                                 </div>
                             </li>
                             <div class="media-footer">
-                              <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click"/>
+                                <asp:Button ID="btnReg" class="btn btn-primary" runat="server" Text="ツイート" OnClick="btnReg_Click" />
                             </div>
                         </div>
                     </div>

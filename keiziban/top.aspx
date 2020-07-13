@@ -65,13 +65,16 @@
             </nav>
             <div class="row">
                 <div class="caption">
-                <p class="homemsg"><h3>どちゃくそ掲示板</h3></p>
-                <details>
-                    <summary>書き込み一覧</summary>
-                    <dl>
-                        <dt>ゆっくりしていってほしい</dt>                        
-                    </dl>
-                </details></div>
+                    <p class="homemsg">
+                        <h3>どちゃくそ掲示板</h3>
+                    </p>
+                    <details>
+                        <summary>書き込み一覧</summary>
+                        <dl>
+                            <dt>ゆっくりしていってほしい</dt>
+                        </dl>
+                    </details>
+                </div>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
                     <div class="item item_main" id="head">

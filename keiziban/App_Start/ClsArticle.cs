@@ -8,7 +8,6 @@ using log4net;
 
 namespace keiziban.App_Start
 {
-
     class ARTICLE
     {
         public int kanri_no { get; set; }
@@ -22,8 +21,6 @@ namespace keiziban.App_Start
 
     class ClsArticle
     {
-
-
         ClsUtils utils = new ClsUtils();
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -53,7 +50,6 @@ namespace keiziban.App_Start
                     article.create_user = utils.NullChkToInt(dr["create_user"]);
 
                     articles.Add(article);
-
                 }
             }
             catch(Exception ex) 
@@ -70,7 +66,6 @@ namespace keiziban.App_Start
 
         public ARTICLE GetArticle(int no)
         {
-            List<ARTICLE> articles = new List<ARTICLE>();
             StringBuilder strSql = new StringBuilder();
             ClsDb db = new ClsDb();
             DataTable tb;
@@ -97,7 +92,6 @@ namespace keiziban.App_Start
                     article.create_user = utils.NullChkToInt(dr["create_user"]);
 
                     return article;
-
                 }
             }
             catch (Exception ex)
@@ -173,7 +167,6 @@ namespace keiziban.App_Start
             {
                 db.Connect();
                 tb = db.ExecuteSql(strSql.ToString(), -1);
-
             }
             catch (Exception ex)
             {
@@ -186,5 +179,4 @@ namespace keiziban.App_Start
             return true;
         }
     }
-
 }

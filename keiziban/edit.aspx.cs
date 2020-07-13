@@ -39,7 +39,6 @@ namespace keiziban
             if (name.Length == 0)
             {
                 return false;
-
             }
 
             return true;
@@ -60,13 +59,13 @@ namespace keiziban
 
             cUser.InsProfile(profile);
             ReadProfile();
+
             return true;
         }
         #endregion
 
         private bool ReadProfile()
         {
-
             ClsUser cUser = new ClsUser();
             int user_id = utils.NullChkToInt(Session["userid"]);
             var user = cUser.GetUserProfile(user_id);
@@ -75,14 +74,7 @@ namespace keiziban
             this.txtMail.Text = user?.mail ?? String.Empty;
             this.txtProfile.Text = user?.profile_message ?? String.Empty;
 
-
-
-
-
-
             return true;
-
         }
-
     }
 }

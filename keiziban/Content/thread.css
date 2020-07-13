@@ -2,6 +2,7 @@
     width:1000px;
     height:1000px;
 }
+
 .mBook{
     height:100px;
     margin:10px;
@@ -12,6 +13,7 @@
     width:100%;
     margin: 1px;
 }
+
 .pDescript{
     font-size:11px;
 }
@@ -20,14 +22,13 @@
     display: block;
     margin: 0 0 0 auto;
 }
+
 .media-heading {
     font-size: 0.7em;
     border-bottom: solid 2px #ddd;
     text-align: left;
-    padding: 10px 0;
-    
+    padding: 10px 0;    
 }
-
 
 .media-footer {
     width: 95%;

@@ -66,18 +66,17 @@
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8  error">
-                     <h1>お探しのページは見つかりませんでした</h1>
-                     <img class="media-objec" src='./img/404.png' />
+                    <h1>お探しのページは見つかりませんでした</h1>
+                    <img class="media-objec" src='./img/404.png' />
                 </div>
                 <div class="col-sm-2"></div>
             </div>
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8 bkHome">
-                                        <asp:Button ID="btnPage" class="btn btn-default" Text="ホームに戻る" runat="server" OnClick="btnPage_Click" />
+                    <asp:Button ID="btnPage" class="btn btn-default" Text="ホームに戻る" runat="server" OnClick="btnPage_Click" />
                 </div>
                 <div class="col-sm-2">
-
                 </div>
             </div>
         </div>
